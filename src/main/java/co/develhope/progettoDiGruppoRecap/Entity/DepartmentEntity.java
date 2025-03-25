@@ -15,7 +15,7 @@ public class DepartmentEntity {
     private String name;
 
     @Column(name = "manager")
-    private String managaer;
+    private String manager;
 
     @Column(name = "description")
     private String description;
@@ -40,9 +40,9 @@ public class DepartmentEntity {
 
     public DepartmentEntity(){}
 
-    public DepartmentEntity(String name, String managaer, Long id, String description, String location, Double budget, String phone, String email) {
+    public DepartmentEntity(String name, String manager, Long id, String description, String location, Double budget, String phone, String email) {
         this.name = name;
-        this.managaer = managaer;
+        this.manager = manager;
         this.id = id;
         this.description = description;
         this.location = location;
@@ -67,12 +67,12 @@ public class DepartmentEntity {
         this.name = name;
     }
 
-    public String getManagaer() {
-        return managaer;
+    public String getManager() {
+        return manager;
     }
 
-    public void setManagaer(String managaer) {
-        this.managaer = managaer;
+    public void setManager(String manager) {
+        this.manager = manager;
     }
 
     public String getDescription() {
