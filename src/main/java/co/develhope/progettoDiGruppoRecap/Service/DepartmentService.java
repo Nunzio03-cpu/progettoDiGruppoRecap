@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DepartmentService {
@@ -18,5 +19,14 @@ public class DepartmentService {
 
     public List<DepartmentEntity> selectAllDepartments() {
         return departmentRepository.findAll();
+    }
+
+    public Optional<DepartmentEntity> selectById(Long id){
+        Optional<DepartmentEntity> departmentEntityOptional = departmentRepository.findById(id);
+        if(departmentEntityOptional.isPresent()){
+            return departmentEntityOptional;
+        } else {
+            return Optional.empty();
+        }
     }
 }
