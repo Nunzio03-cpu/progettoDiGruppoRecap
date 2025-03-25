@@ -18,16 +18,19 @@ public class EmployeeEntity {
     private String phoneNumber;
     @Column(name = "email")
     private String email;
+    @Column(name = "salary")
+    private Long salary;
 
     public EmployeeEntity(){}
 
-    public EmployeeEntity(String email, String phoneNumber, LocalDate dateOfBirth, String lastName, String name, Integer id) {
+    public EmployeeEntity(String email, String phoneNumber, LocalDate dateOfBirth, String lastName, String name, Integer id, Long salary) {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.lastName = lastName;
         this.name = name;
         this.id = id;
+        this.salary = salary;
     }
 
     public Integer getId() {
@@ -76,5 +79,13 @@ public class EmployeeEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Long salary) {
+        this.salary = salary;
     }
 }
