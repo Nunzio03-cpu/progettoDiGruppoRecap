@@ -34,4 +34,22 @@ public class DepartmentController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Optional<DepartmentEntity>> update(@PathVariable Long id,
+                                                             @RequestBody DepartmentEntity departmentEntity){
+        Optional<DepartmentEntity> departmentEntityOptional = departmentService.update(id, departmentEntity);
+        if (departmentEntityOptional.isPresent()){
+            return ResponseEntity.ok(departmentEntityOptional);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<DepartmentEntity> delete(@RequestBody DepartmentEntity departmentEntity){
+        departmentService.delete(departmentEntity);
+        return ResponseEntity.ok(departmentEntity);
+    }
+
 }

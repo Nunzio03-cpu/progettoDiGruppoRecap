@@ -29,4 +29,29 @@ public class DepartmentService {
             return Optional.empty();
         }
     }
+
+    public Optional<DepartmentEntity> update(Long id, DepartmentEntity updatedDepartmentEntity){
+        Optional<DepartmentEntity> departmentEntityOptional = departmentRepository.findById(id);
+        if(departmentEntityOptional.isPresent()){
+            departmentEntityOptional.get().setName(updatedDepartmentEntity.getName());
+            departmentEntityOptional.get().setManager(updatedDepartmentEntity.getManager());
+            departmentEntityOptional.get().setDescription(updatedDepartmentEntity.getDescription());
+            departmentEntityOptional.get().setLocation(updatedDepartmentEntity.getLocation());
+            departmentEntityOptional.get().setBudget(updatedDepartmentEntity.getBudget());
+            departmentEntityOptional.get().setDateCreated(updatedDepartmentEntity.getDateCreated());
+            departmentEntityOptional.get().setStatusEnum(updatedDepartmentEntity.getStatusEnum());
+            departmentEntityOptional.get().setPhone(updatedDepartmentEntity.getPhone());
+            departmentEntityOptional.get().setEmail(updatedDepartmentEntity.getEmail());
+            DepartmentEntity departmentEntity = departmentEntityOptional.get();
+            departmentRepository.save(departmentEntity);
+            return Optional.of(departmentEntity);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public DepartmentEntity delete(DepartmentEntity departmentEntity){
+        departmentRepository.delete(departmentEntity);
+        return departmentEntity;
+    }
 }
