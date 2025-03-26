@@ -3,9 +3,11 @@ package co.develhope.progettoDiGruppoRecap.Controller;
 import co.develhope.progettoDiGruppoRecap.Entity.DepartmentEntity;
 import co.develhope.progettoDiGruppoRecap.Service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,4 +54,8 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentEntity);
     }
 
+    @GetMapping("/find-by-datecreated")
+    public ResponseEntity<List<DepartmentEntity>> findByDateCreated(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateCreated) {
+        return ResponseEntity.ok(departmentService.findByDateCreated(dateCreated));
+    }
 }

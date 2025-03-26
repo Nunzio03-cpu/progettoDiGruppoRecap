@@ -5,6 +5,7 @@ import co.develhope.progettoDiGruppoRecap.Repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +54,10 @@ public class DepartmentService {
     public DepartmentEntity delete(DepartmentEntity departmentEntity){
         departmentRepository.delete(departmentEntity);
         return departmentEntity;
+    }
+
+    public List<DepartmentEntity> findByDateCreated(LocalDate dateCreated){
+        List<DepartmentEntity> departmentEntities = departmentRepository.findByDateCreated(dateCreated);
+        return departmentEntities;
     }
 }
