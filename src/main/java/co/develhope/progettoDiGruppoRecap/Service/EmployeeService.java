@@ -24,17 +24,22 @@ public class EmployeeService {
     }
 
     public Optional<EmployeeEntity> updateEmployee(Integer id, EmployeeEntity employee) {
-        Optional<EmployeeEntity> optionalEmployee = employeeRepository.findById(id);
-        if (optionalEmployee.isPresent()) {
-            optionalEmployee.get().setName(employee.getName());
-            optionalEmployee.get().setLastName(employee.getLastName());
-            optionalEmployee.get().setSalary(employee.getSalary());
-            optionalEmployee.get().setDateOfBirth(employee.getDateOfBirth());
-            optionalEmployee.get().setEmail(employee.getEmail());
-            optionalEmployee.get().setSalary(employee.getSalary());
-            EmployeeEntity employeeEntity = employeeRepository.save(employee);
+        Optional<EmployeeEntity> employeeDaAggiornare = employeeRepository.findById(id);
+        if (employeeDaAggiornare.isPresent()) {
+            employeeDaAggiornare.get().setName(employee.getName());
+            employeeDaAggiornare.get().setLastName(employee.getLastName());
+            employeeDaAggiornare.get().setSalary(employee.getSalary());
+            employeeDaAggiornare.get().setDateOfBirth(employee.getDateOfBirth());
+            employeeDaAggiornare.get().setEmail(employee.getEmail());
+            employeeDaAggiornare.get().setSalary(employee.getSalary());
+            EmployeeEntity employeeEntity = employeeRepository.save(employeeDaAggiornare.get());
             return Optional.of(employeeEntity);
         }
         return Optional.empty();
     }
+
+    public void deleteEmployee(Integer id){
+        employeeRepository.deleteById(id);
+    }
+
 }
