@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface DepartmentRepository extends JpaRepository<DepartmentEntity, Long> {
     List<DepartmentEntity> findByDateCreated(LocalDate dateCreated);
+    List<DepartmentEntity> findByNameContaining(String name);
 }

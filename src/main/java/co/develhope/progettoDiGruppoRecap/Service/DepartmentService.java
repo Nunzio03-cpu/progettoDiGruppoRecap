@@ -60,4 +60,9 @@ public class DepartmentService {
         List<DepartmentEntity> departmentEntities = departmentRepository.findByDateCreated(dateCreated);
         return departmentEntities;
     }
+
+    public List<DepartmentEntity> findByNameContaining(String name){
+        List<DepartmentEntity> departmentEntities = departmentRepository.findByNameContaining(name);
+        return departmentEntities;
+    }
 }

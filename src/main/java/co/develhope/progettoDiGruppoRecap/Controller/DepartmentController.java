@@ -58,4 +58,9 @@ public class DepartmentController {
     public ResponseEntity<List<DepartmentEntity>> findByDateCreated(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateCreated) {
         return ResponseEntity.ok(departmentService.findByDateCreated(dateCreated));
     }
+
+    @GetMapping("/find-by-name-containing")
+    public ResponseEntity<List<DepartmentEntity>> findByNameContaining(@RequestParam String name){
+        return ResponseEntity.ok(departmentService.findByNameContaining(name));
+    }
 }
