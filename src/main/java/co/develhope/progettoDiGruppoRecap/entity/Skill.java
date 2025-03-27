@@ -1,5 +1,6 @@
-package co.develhope.progettoDiGruppoRecap.entity;
+package co.develhope.progettoDiGruppoRecap.Entity;
 
+import co.develhope.progettoDiGruppoRecap.Entity.LivelloEnum;
 import jakarta.persistence.*;
 
 @Entity

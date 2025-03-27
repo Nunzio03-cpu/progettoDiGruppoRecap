@@ -1,8 +1,8 @@
-package co.develhope.progettoDiGruppoRecap.controller;
+package co.develhope.progettoDiGruppoRecap.Controller;
 
-import co.develhope.progettoDiGruppoRecap.entity.LivelloEnum;
-import co.develhope.progettoDiGruppoRecap.entity.Skill;
-import co.develhope.progettoDiGruppoRecap.service.SkillService;
+import co.develhope.progettoDiGruppoRecap.Entity.LivelloEnum;
+import co.develhope.progettoDiGruppoRecap.Entity.Skill;
+import co.develhope.progettoDiGruppoRecap.Service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
