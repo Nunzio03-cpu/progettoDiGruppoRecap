@@ -5,6 +5,7 @@ import co.develhope.progettoDiGruppoRecap.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,8 +39,23 @@ public class EmployeeService {
         return Optional.empty();
     }
 
-    public void deleteEmployee(Integer id){
+    public void deleteEmployee(Integer id) {
         employeeRepository.deleteById(id);
     }
 
+    public List<EmployeeEntity> findBySalary(Long salary) {
+        return employeeRepository.reserchBySalary(salary);
+    }
+
+    public List<EmployeeEntity> findBySalaryRange(Long minSalary, Long maxSalary) {
+        return employeeRepository.findBySalaryBetween(minSalary, maxSalary);
+    }
+
+    public List<EmployeeEntity> findByHiringPeriod(LocalDate hiringPeriod) {
+        return employeeRepository.findByHiringPeriod(hiringPeriod);
+    }
+
+    public Optional<EmployeeEntity> findById(Integer id){
+        return employeeRepository.findById(id);
+    }
 }
