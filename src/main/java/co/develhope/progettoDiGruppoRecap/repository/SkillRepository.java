@@ -1,7 +1,8 @@
-package co.develhope.progettoDiGruppoRecap.repository;
+package co.develhope.progettoDiGruppoRecap.Repository;
 
-import co.develhope.progettoDiGruppoRecap.entity.LivelloEnum;
-import co.develhope.progettoDiGruppoRecap.entity.Skill;
+
+import co.develhope.progettoDiGruppoRecap.Entity.LivelloEnum;
+import co.develhope.progettoDiGruppoRecap.Entity.Skill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

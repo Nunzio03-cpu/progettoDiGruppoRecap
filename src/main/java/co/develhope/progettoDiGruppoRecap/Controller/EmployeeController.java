@@ -35,7 +35,7 @@ public class EmployeeController {
     }
 
     @PutMapping("update/{id}")
-    public ResponseEntity<Optional<EmployeeEntity>> updateEmployee(@PathVariable Integer id, @RequestBody EmployeeEntity employee) {
+    public ResponseEntity<Optional<EmployeeEntity>> updateEmployee(@PathVariable Long id, @RequestBody EmployeeEntity employee) {
         Optional<EmployeeEntity> employeeEntityOptional = employeeService.updateEmployee(id, employee);
         if (employeeEntityOptional.isPresent()) {
             return ResponseEntity.ok(employeeEntityOptional);
@@ -45,7 +45,7 @@ public class EmployeeController {
     }
 
     @GetMapping("find-by-id")
-    public Optional<EmployeeEntity> findById(@PathVariable Integer id){
+    public Optional<EmployeeEntity> findById(@PathVariable Long id){
         return employeeService.findById(id);
     }
 }
