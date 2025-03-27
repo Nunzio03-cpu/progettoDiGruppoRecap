@@ -38,7 +38,7 @@ public class EmployeeService {
         return Optional.empty();
     }
 
-    public void deleteEmployee(Integer id){
+    public void deleteEmployee(Long id){
         employeeRepository.deleteById(id);
     }
 
