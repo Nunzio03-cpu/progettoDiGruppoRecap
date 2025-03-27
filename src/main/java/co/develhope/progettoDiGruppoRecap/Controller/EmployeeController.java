@@ -44,4 +44,8 @@ public class EmployeeController {
         }
     }
 
+    @GetMapping("find-by-id")
+    public Optional<EmployeeEntity> findById(@PathVariable Integer id){
+        return employeeService.findById(id);
+    }
 }
