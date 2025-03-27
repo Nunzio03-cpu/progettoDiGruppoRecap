@@ -1,8 +1,10 @@
 package co.develhope.progettoDiGruppoRecap.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table (name = "department")
@@ -37,6 +39,10 @@ public class DepartmentEntity {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "department", cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
+    @JsonIgnore
+    private List<EmployeeEntity> employees;
 
     public DepartmentEntity(){}
 
@@ -129,5 +135,13 @@ public class DepartmentEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<EmployeeEntity> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<EmployeeEntity> employees) {
+        this.employees = employees;
     }
 }

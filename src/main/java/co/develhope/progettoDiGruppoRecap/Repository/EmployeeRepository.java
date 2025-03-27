@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Integer> {
+public interface EmployeeRepository extends JpaRepository <EmployeeEntity , Long> {
     //Ricerca dipendenti per stipendio
     List<EmployeeEntity> reserchBySalary(Long salary);
 

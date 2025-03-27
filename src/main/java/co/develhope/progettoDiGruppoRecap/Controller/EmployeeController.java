@@ -29,7 +29,7 @@ public class EmployeeController {
 
     //delete employee
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<EmployeeEntity> deleteEmployee(@PathVariable Integer id) {
+    public ResponseEntity<EmployeeEntity> deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
         return ResponseEntity.ok().build();
     }
