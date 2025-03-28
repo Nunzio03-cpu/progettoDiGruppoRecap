@@ -24,7 +24,7 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Optional<EmployeeEntity> updateEmployee(Integer id, EmployeeEntity employee) {
+    public Optional<EmployeeEntity> updateEmployee(Long id, EmployeeEntity employee) {
         Optional<EmployeeEntity> employeeDaAggiornare = employeeRepository.findById(id);
         if (employeeDaAggiornare.isPresent()) {
             employeeDaAggiornare.get().setName(employee.getName());
@@ -55,7 +55,7 @@ public class EmployeeService {
         return employeeRepository.findByHiringPeriod(hiringPeriod);
     }
 
-    public Optional<EmployeeEntity> findById(Integer id){
+    public Optional<EmployeeEntity> findById(Long id){
         return employeeRepository.findById(id);
     }
 }
