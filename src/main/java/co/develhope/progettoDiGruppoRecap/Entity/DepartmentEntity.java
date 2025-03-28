@@ -41,7 +41,6 @@ public class DepartmentEntity {
     private String email;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = true)
-    @JsonIgnore
     private List<EmployeeEntity> employees;
 
     public DepartmentEntity(){}
