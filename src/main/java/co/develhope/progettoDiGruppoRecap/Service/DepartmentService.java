@@ -77,8 +77,8 @@ public class DepartmentService {
             DepartmentEntity departmentEntity = departmentEntityOptional.get();
             EmployeeEntity employeeEntity = employeeEntityOptional.get();
             departmentEntity.getEmployees().add(employeeEntity);
-            departmentRepository.save(departmentEntity);
-            return Optional.of(departmentEntity);
+            DepartmentEntity departmentSaved = departmentRepository.save(departmentEntity);
+            return Optional.of(departmentSaved);
         } else {
             return Optional.empty();
         }

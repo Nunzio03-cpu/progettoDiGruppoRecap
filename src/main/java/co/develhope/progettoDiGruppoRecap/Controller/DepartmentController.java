@@ -64,5 +64,16 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentService.findByNameContaining(name));
     }
 
+    @PutMapping("/add-employee-to-department")
+    public ResponseEntity<Optional<DepartmentEntity>> addEmployeeToDepartment(@RequestParam Long idDepartment,
+                                                                              @RequestParam Long idEmployee){
+        Optional<DepartmentEntity> departmentEntityOptional = departmentService.addEmployeeToDepartment(idDepartment,
+                                                                                                        idEmployee);
+        if (departmentEntityOptional.isPresent()) {
+            return ResponseEntity.ok(departmentEntityOptional);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }
