@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository <EmployeeEntity , Long> {
     //Ricerca dipendenti per stipendio
-    List<EmployeeEntity> reserchBySalary(Long salary);
+    List<EmployeeEntity> findBySalary(Long salary);
 
     //Ricerca dipendenti per range di stipendio
     List<EmployeeEntity> findBySalaryBetween(Long minSalary, Long maxSalary);
 
     //Ricerca dipendenti assunti in un periodo specifico
-    List<EmployeeEntity> findByHiringPeriod(LocalDate periodoDiAssunzione);
+    List<EmployeeEntity> findByDateOfBirth(LocalDate datacompleanno);
 }

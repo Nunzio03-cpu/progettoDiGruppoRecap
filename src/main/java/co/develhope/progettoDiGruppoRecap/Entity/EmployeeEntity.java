@@ -22,6 +22,9 @@ public class EmployeeEntity {
     private String email;
     @Column(name = "salary")
     private Long salary;
+    @ManyToOne
+    @JoinColumn(name = "department", nullable = false)
+    private DepartmentEntity department;
 
     public EmployeeEntity() {
     }
@@ -90,5 +93,13 @@ public class EmployeeEntity {
 
     public void setSalary(Long salary) {
         this.salary = salary;
+    }
+
+    public DepartmentEntity getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(DepartmentEntity department) {
+        this.department = department;
     }
 }

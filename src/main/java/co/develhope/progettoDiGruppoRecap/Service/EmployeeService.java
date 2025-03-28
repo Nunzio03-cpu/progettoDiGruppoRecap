@@ -44,7 +44,7 @@ public class EmployeeService {
     }
 
     public List<EmployeeEntity> findBySalary(Long salary) {
-        return employeeRepository.reserchBySalary(salary);
+        return employeeRepository.findBySalary(salary);
     }
 
     public List<EmployeeEntity> findBySalaryRange(Long minSalary, Long maxSalary) {
@@ -52,7 +52,7 @@ public class EmployeeService {
     }
 
     public List<EmployeeEntity> findByHiringPeriod(LocalDate hiringPeriod) {
-        return employeeRepository.findByHiringPeriod(hiringPeriod);
+        return employeeRepository.findByDateOfBirth(hiringPeriod);
     }
 
     public Optional<EmployeeEntity> findById(Long id){
