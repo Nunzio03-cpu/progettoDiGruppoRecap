@@ -1,7 +1,9 @@
 package co.develhope.progettoDiGruppoRecap.Service;
 
 import co.develhope.progettoDiGruppoRecap.Entity.DepartmentEntity;
+import co.develhope.progettoDiGruppoRecap.Entity.EmployeeEntity;
 import co.develhope.progettoDiGruppoRecap.Repository.DepartmentRepository;
+import co.develhope.progettoDiGruppoRecap.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     public DepartmentEntity createDepartment(DepartmentEntity departmentEntity){
         return departmentRepository.save(departmentEntity);
@@ -64,5 +68,19 @@ public class DepartmentService {
     public List<DepartmentEntity> findByNameContaining(String name){
         List<DepartmentEntity> departmentEntities = departmentRepository.findByNameContaining(name);
         return departmentEntities;
+    }
+
+    public Optional<DepartmentEntity> addEmployeeToDepartment(Long idDepartment, Long idEmployee) {
+        Optional<DepartmentEntity> departmentEntityOptional = departmentRepository.findById(idDepartment);
+        Optional<EmployeeEntity> employeeEntityOptional = employeeRepository.findById(idEmployee);
+        if (departmentEntityOptional.isPresent() && employeeEntityOptional.isPresent()){
+            DepartmentEntity departmentEntity = departmentEntityOptional.get();
+            EmployeeEntity employeeEntity = employeeEntityOptional.get();
+            departmentEntity.getEmployees().add(employeeEntity);
+            departmentRepository.save(departmentEntity);
+            return Optional.of(departmentEntity);
+        } else {
+            return Optional.empty();
+        }
     }
 }
