@@ -1,6 +1,8 @@
 package co.develhope.progettoDiGruppoRecap.Service;
 
+import co.develhope.progettoDiGruppoRecap.Entity.DepartmentEntity;
 import co.develhope.progettoDiGruppoRecap.Entity.EmployeeEntity;
+import co.develhope.progettoDiGruppoRecap.Repository.DepartmentRepository;
 import co.develhope.progettoDiGruppoRecap.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
 
     public EmployeeEntity createEmployee(EmployeeEntity employee) {
@@ -57,5 +61,38 @@ public class EmployeeService {
 
     public Optional<EmployeeEntity> findById(Long id){
         return employeeRepository.findById(id);
+    }
+
+    public Optional<EmployeeEntity> addDepartmentToEmployee(Long idDepartment, Long idEmployee) {
+        //crea gli oggetti optional
+        Optional<DepartmentEntity> departmentEntityOptional = departmentRepository.findById(idDepartment);
+        Optional<EmployeeEntity> employeeEntityOptional = employeeRepository.findById(idEmployee);
+        //controllo di esistenza
+        if (departmentEntityOptional.isPresent() && employeeEntityOptional.isPresent()){
+            DepartmentEntity departmentEntity = departmentEntityOptional.get();
+            EmployeeEntity employeeEntity = employeeEntityOptional.get();
+            //devo aggiungere il departmentEntity al campo depatment dell' employeeEntity
+            employeeEntity.setDepartment(departmentEntity);
+            //devo salvare in nuovo oggetto che si chiama employeeSaved tramite la EmployeeRepository
+            //tramite il metodo save
+            EmployeeEntity employeeSaved = employeeRepository.save(employeeEntity);
+            return Optional.of(employeeSaved);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    public Optional<EmployeeEntity> removeDepartmentFromEmployee(Long idDepartment, Long idEmployee) {
+        Optional<DepartmentEntity> departmentEntityOptional = departmentRepository.findById(idDepartment);
+        Optional<EmployeeEntity> employeeEntityOptional = employeeRepository.findById(idEmployee);
+        if (departmentEntityOptional.isPresent() && employeeEntityOptional.isPresent()){
+            DepartmentEntity departmentEntity = departmentEntityOptional.get();
+            EmployeeEntity employeeEntity = employeeEntityOptional.get();
+            employeeEntity.setDepartment(null);
+            EmployeeEntity employeeSaved = employeeRepository.save(employeeEntity);
+            return Optional.of(employeeSaved);
+        } else {
+            return Optional.empty();
+        }
     }
 }

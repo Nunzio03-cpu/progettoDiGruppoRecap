@@ -1,6 +1,8 @@
 package co.develhope.progettoDiGruppoRecap.Controller;
 
+import co.develhope.progettoDiGruppoRecap.Entity.DepartmentEntity;
 import co.develhope.progettoDiGruppoRecap.Entity.EmployeeEntity;
+import co.develhope.progettoDiGruppoRecap.Service.DepartmentService;
 import co.develhope.progettoDiGruppoRecap.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +15,7 @@ import java.util.Optional;
 @RequestMapping("/employee")
 public class EmployeeController {
     @Autowired
-    EmployeeService employeeService;
-
+    private EmployeeService employeeService;
     //Create an employee
     @PostMapping("/create")
     public ResponseEntity<EmployeeEntity> createEmployee(@RequestBody EmployeeEntity employee) {
@@ -47,5 +48,29 @@ public class EmployeeController {
     @GetMapping("find-by-id")
     public Optional<EmployeeEntity> findById(@PathVariable Long id){
         return employeeService.findById(id);
+    }
+
+    @PutMapping("/add-department-to-employee")
+    public ResponseEntity<Optional<EmployeeEntity>> addDepartmentToEmployee(@RequestParam Long idDepartment,
+                                                                              @RequestParam Long idEmployee){
+        Optional<EmployeeEntity> employeeEntityOptional = employeeService.addDepartmentToEmployee(idDepartment,
+                idEmployee);
+        if (employeeEntityOptional.isPresent()) {
+            return ResponseEntity.ok(employeeEntityOptional);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/remove-department-from-employee")
+    public ResponseEntity<Optional<EmployeeEntity>> removeDeparrtmentFromEmployee(@RequestParam Long idDepartment,
+                                                                                 @RequestParam Long idEmployee){
+        Optional<EmployeeEntity> employeeEntityOptional = employeeService.removeDepartmentFromEmployee(idDepartment,
+                idEmployee);
+        if (employeeEntityOptional.isPresent()) {
+            return ResponseEntity.ok(employeeEntityOptional);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

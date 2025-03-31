@@ -63,6 +63,4 @@ public class DepartmentController {
     public ResponseEntity<List<DepartmentEntity>> findByNameContaining(@RequestParam String name){
         return ResponseEntity.ok(departmentService.findByNameContaining(name));
     }
-
-
 }

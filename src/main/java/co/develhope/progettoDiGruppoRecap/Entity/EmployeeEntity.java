@@ -1,6 +1,8 @@
 package co.develhope.progettoDiGruppoRecap.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -30,7 +32,8 @@ public class EmployeeEntity {
     )
     private List<Skill> skills;
     @ManyToOne
-    @JoinColumn(name = "department", nullable = false)
+    @JoinColumn(name = "department")
+    @JsonIgnore
     private DepartmentEntity department;
 
     public EmployeeEntity() {

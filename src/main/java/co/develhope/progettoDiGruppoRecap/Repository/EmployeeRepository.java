@@ -14,5 +14,5 @@ public interface EmployeeRepository extends JpaRepository <EmployeeEntity , Long
     List<EmployeeEntity> findBySalaryBetween(Long minSalary, Long maxSalary);
 
     //Ricerca dipendenti assunti in un periodo specifico
-    List<EmployeeEntity> findByDateOfBirth(LocalDate datacompleanno);
+    List<EmployeeEntity> findByDateOfBirth(LocalDate periodoDiAssunzione);
 }

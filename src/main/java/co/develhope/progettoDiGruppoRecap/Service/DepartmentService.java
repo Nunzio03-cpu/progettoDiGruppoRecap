@@ -1,7 +1,9 @@
 package co.develhope.progettoDiGruppoRecap.Service;
 
 import co.develhope.progettoDiGruppoRecap.Entity.DepartmentEntity;
+import co.develhope.progettoDiGruppoRecap.Entity.EmployeeEntity;
 import co.develhope.progettoDiGruppoRecap.Repository.DepartmentRepository;
+import co.develhope.progettoDiGruppoRecap.Repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.Optional;
 public class DepartmentService {
     @Autowired
     private DepartmentRepository departmentRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     public DepartmentEntity createDepartment(DepartmentEntity departmentEntity){
         return departmentRepository.save(departmentEntity);
