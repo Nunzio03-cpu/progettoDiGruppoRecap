@@ -104,4 +104,5 @@ public class EmployeeEntity {
     public void setDepartment(DepartmentEntity department) {
         this.department = department;
     }
+
 }

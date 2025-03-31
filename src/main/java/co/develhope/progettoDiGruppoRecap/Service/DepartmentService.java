@@ -69,18 +69,4 @@ public class DepartmentService {
         List<DepartmentEntity> departmentEntities = departmentRepository.findByNameContaining(name);
         return departmentEntities;
     }
-
-    public Optional<DepartmentEntity> addEmployeeToDepartment(Long idDepartment, Long idEmployee) {
-        Optional<DepartmentEntity> departmentEntityOptional = departmentRepository.findById(idDepartment);
-        Optional<EmployeeEntity> employeeEntityOptional = employeeRepository.findById(idEmployee);
-        if (departmentEntityOptional.isPresent() && employeeEntityOptional.isPresent()){
-            DepartmentEntity departmentEntity = departmentEntityOptional.get();
-            EmployeeEntity employeeEntity = employeeEntityOptional.get();
-            departmentEntity.getEmployees().add(employeeEntity);
-            DepartmentEntity departmentSaved = departmentRepository.save(departmentEntity);
-            return Optional.of(departmentSaved);
-        } else {
-            return Optional.empty();
-        }
-    }
 }
