@@ -3,6 +3,7 @@ package co.develhope.progettoDiGruppoRecap.Controller;
 import co.develhope.progettoDiGruppoRecap.Entity.LivelloEnum;
 import co.develhope.progettoDiGruppoRecap.Entity.Skill;
 import co.develhope.progettoDiGruppoRecap.Service.SkillService;
+import co.develhope.progettoDiGruppoRecap.Entity.EmployeeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +62,18 @@ public class SkillController {
     @GetMapping("/search-by-livello/{livelloEnum}")
     public ResponseEntity<List<Skill>> searchByLivelloEnum(@PathVariable LivelloEnum livelloEnum){
         List<Skill> list = skillService.searchByLivelloEnum(livelloEnum);
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping("/count-employee")
+    public ResponseEntity<Long> countEmployeesBySkill(@RequestParam String skillName){
+        Long count = skillService.countEmployeesBySkill(skillName);
+        return ResponseEntity.ok(count);
+    }
+
+    @GetMapping("/list-employee")
+    public  ResponseEntity<List<EmployeeEntity>> employeeEntityList(@RequestParam String skillName){
+        List<EmployeeEntity> list = skillService.employeeEntityList(skillName);
         return ResponseEntity.ok(list);
     }
 

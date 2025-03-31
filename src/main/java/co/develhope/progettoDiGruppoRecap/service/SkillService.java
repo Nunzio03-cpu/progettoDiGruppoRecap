@@ -3,6 +3,7 @@ package co.develhope.progettoDiGruppoRecap.Service;
 import co.develhope.progettoDiGruppoRecap.Entity.LivelloEnum;
 import co.develhope.progettoDiGruppoRecap.Entity.Skill;
 import co.develhope.progettoDiGruppoRecap.Repository.SkillRepository;
+import co.develhope.progettoDiGruppoRecap.Entity.EmployeeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,4 +58,22 @@ public class SkillService {
     public List<Skill> searchByLivelloEnum(LivelloEnum livelloEnum) {
         return skillRepository.findByLivelloEnum(livelloEnum);
     }
+
+    public Long countEmployeesBySkill(String skillName){
+        return skillRepository.findByEmployeeEntityCountSkill(skillName);
+    }
+
+    public List<EmployeeEntity> employeeEntityList(String skillName) {
+        return skillRepository.findByEmployeeEntityList(skillName);
+    }
+
+
+
+
+
+
+
+
+
+
 }

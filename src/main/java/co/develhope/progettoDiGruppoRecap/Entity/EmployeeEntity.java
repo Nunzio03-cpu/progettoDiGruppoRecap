@@ -1,8 +1,8 @@
 package co.develhope.progettoDiGruppoRecap.Entity;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "employee")
@@ -22,6 +22,13 @@ public class EmployeeEntity {
     private String email;
     @Column(name = "salary")
     private Long salary;
+    @ManyToMany
+    @JoinTable(
+            name = "employee_skill",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    private List<Skill> skills;
     @ManyToOne
     @JoinColumn(name = "department", nullable = false)
     private DepartmentEntity department;
@@ -29,13 +36,12 @@ public class EmployeeEntity {
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity(String email, String phoneNumber, LocalDate dateOfBirth, String lastName, String name, Long id, Long salary) {
+    public EmployeeEntity(String email, String phoneNumber, LocalDate dateOfBirth, String lastName, String name, Integer id, Long salary) {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.lastName = lastName;
         this.name = name;
-        this.id = id;
         this.salary = salary;
     }
 
@@ -101,5 +107,13 @@ public class EmployeeEntity {
 
     public void setDepartment(DepartmentEntity department) {
         this.department = department;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 }

@@ -1,7 +1,6 @@
 package co.develhope.progettoDiGruppoRecap.Entity;
-
-import co.develhope.progettoDiGruppoRecap.Entity.LivelloEnum;
 import jakarta.persistence.*;
+
 
 @Entity
 @Table(name = "skill")
@@ -25,6 +24,7 @@ public class Skill {
         this.nome = nome;
         this.descrizione = descrizione;
         this.livelloEnum = livelloEnum;
+
     }
 
     public Long getId() {
