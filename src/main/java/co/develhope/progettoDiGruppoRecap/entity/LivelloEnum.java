@@ -1,4 +1,4 @@
-package co.develhope.progettoDiGruppoRecap.entity;
+package co.develhope.progettoDiGruppoRecap.Entity;
 
 
 public enum LivelloEnum {

@@ -1,18 +1,19 @@
 package co.develhope.progettoDiGruppoRecap.Entity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
-@Table( name = "employee")
+@Table(name = "employee")
 public class EmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "first_name")
     private String name;
     @Column(name = "last_name")
     private String lastName;
-    @Column( name = "date_of_birth")
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -20,10 +21,21 @@ public class EmployeeEntity {
     private String email;
     @Column(name = "salary")
     private Long salary;
+    @ManyToMany
+    @JoinTable(
+            name = "employee_skill",
+            joinColumns = @JoinColumn(name = "employee_id"),
+            inverseJoinColumns = @JoinColumn(name = "skill_id")
+    )
+    private List<Skill> skills;
+    @ManyToOne
+    @JoinColumn(name = "department", nullable = false)
+    private DepartmentEntity department;
 
-    public EmployeeEntity(){}
+    public EmployeeEntity() {
+    }
 
-    public EmployeeEntity(String email, String phoneNumber, LocalDate dateOfBirth, String lastName, String name, Integer id, Long salary) {
+    public EmployeeEntity(String email, String phoneNumber, LocalDate dateOfBirth, String lastName, String name, Long id, Long salary) {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
@@ -31,13 +43,14 @@ public class EmployeeEntity {
         this.name = name;
         this.id = id;
         this.salary = salary;
+
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -87,5 +100,21 @@ public class EmployeeEntity {
 
     public void setSalary(Long salary) {
         this.salary = salary;
+    }
+
+    public DepartmentEntity getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(DepartmentEntity department) {
+        this.department = department;
+    }
+
+    public List<Skill> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(List<Skill> skills) {
+        this.skills = skills;
     }
 }

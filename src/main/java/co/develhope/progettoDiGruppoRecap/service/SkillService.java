@@ -1,8 +1,9 @@
-package co.develhope.progettoDiGruppoRecap.service;
+package co.develhope.progettoDiGruppoRecap.Service;
 
-import co.develhope.progettoDiGruppoRecap.entity.LivelloEnum;
-import co.develhope.progettoDiGruppoRecap.entity.Skill;
-import co.develhope.progettoDiGruppoRecap.repository.SkillRepository;
+import co.develhope.progettoDiGruppoRecap.Entity.EmployeeEntity;
+import co.develhope.progettoDiGruppoRecap.Entity.LivelloEnum;
+import co.develhope.progettoDiGruppoRecap.Entity.Skill;
+import co.develhope.progettoDiGruppoRecap.Repository.SkillRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,44 +20,57 @@ public class SkillService {
         return skillRepository.save(skill);
     }
 
-    public List<Skill> getAllSKills(){
+    public List<Skill> getAllSKills() {
         return skillRepository.findAll();
     }
 
-    public Optional<Skill> findById(Long id){
+    public Optional<Skill> findById(Long id) {
         Optional<Skill> skillOptional = skillRepository.findById(id);
-        if(skillOptional.isPresent()){
+        if (skillOptional.isPresent()) {
             return skillOptional;
 
-        } else{
+        } else {
             return Optional.empty();
         }
     }
 
-    public Optional<Skill> updateSkill(Long id, Skill skillUpdate){
+    public Optional<Skill> updateSkill(Long id, Skill skillUpdate) {
         Optional<Skill> skillOptional = skillRepository.findById(id);
-        if(skillOptional.isPresent()){
+        if (skillOptional.isPresent()) {
             skillOptional.get().setNome(skillUpdate.getNome());
             skillOptional.get().setDescrizione(skillUpdate.getDescrizione());
             skillOptional.get().setLivelloEnum(skillUpdate.getLivelloEnum());
             Skill skillNew = skillRepository.save(skillOptional.get());
             return Optional.of(skillNew);
-        } else{
+        } else {
             return Optional.empty();
         }
     }
 
-    public void deleteSkill(Long id){
+    public void deleteSkill(Long id) {
         skillRepository.deleteById(id);
     }
 
-    public List<Skill> searchByNome(String nome){
+    public List<Skill> searchByNome(String nome) {
         return skillRepository.findByNome(nome);
     }
 
-    public List<Skill> searchByLivelloEnum(LivelloEnum livelloEnum){
+    public List<Skill> searchByLivelloEnum(LivelloEnum livelloEnum) {
         return skillRepository.findByLivelloEnum(livelloEnum);
     }
+
+    public Long countEmployeesBySkill(String skillName){
+        return skillRepository.findByEmployeeEntityCountSkill(skillName);
+    }
+
+    public List<EmployeeEntity> employeeEntityList(String skillName) {
+        return skillRepository.findByEmployeeEntityList(skillName);
+    }
+
+
+
+
+
 
 
 
