@@ -73,4 +73,9 @@ public class EmployeeController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @GetMapping("/count-employees-for-department")
+    public ResponseEntity<Long> countNumberOfEmployeesForDepartment(@RequestParam Long idDepartment){
+        return ResponseEntity.ok(employeeService.countNumberOfEmployeesForDepartment(idDepartment));
+    }
 }

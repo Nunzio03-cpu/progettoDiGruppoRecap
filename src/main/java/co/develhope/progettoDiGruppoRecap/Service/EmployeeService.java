@@ -95,4 +95,8 @@ public class EmployeeService {
             return Optional.empty();
         }
     }
+
+    public Long countNumberOfEmployeesForDepartment(Long idDepartment){
+        return employeeRepository.countNumberOfEmployeesForDepartment(idDepartment);
+    }
 }
