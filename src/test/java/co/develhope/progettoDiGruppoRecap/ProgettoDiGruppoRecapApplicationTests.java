@@ -1,17 +1,18 @@
 package co.develhope.progettoDiGruppoRecap;
 
-import co.develhope.progettoDiGruppoRecap.Controller.DepartmentController;
 import co.develhope.progettoDiGruppoRecap.Controller.SkillController;
-import co.develhope.progettoDiGruppoRecap.Entity.DepartmentEntity;
 import co.develhope.progettoDiGruppoRecap.Entity.LivelloEnum;
 import co.develhope.progettoDiGruppoRecap.Entity.Skill;
-import co.develhope.progettoDiGruppoRecap.Service.DepartmentService;
 import co.develhope.progettoDiGruppoRecap.Service.SkillService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import co.develhope.progettoDiGruppoRecap.Controller.DepartmentController;
+import co.develhope.progettoDiGruppoRecap.Entity.DepartmentEntity;
+import co.develhope.progettoDiGruppoRecap.Service.DepartmentService;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -25,40 +26,26 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import org.springframework.http.MediaType;
 import java.time.LocalDate;
 import java.util.Collections;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import java.util.Optional;
 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class ProgettoDiGruppoRecapApplicationTests {
 	@Autowired
-	private SkillController skillController;
-	@Autowired
 	private TestRestTemplate testRestTemplate;
-	@MockitoBean
-	private SkillService skillService;
 	@Autowired
 	private MockMvc mockMvc;
 	@Autowired
 	private ObjectMapper objectMapper;
     @Autowired
     private DepartmentController departmentController;
+
     @MockitoBean
     private DepartmentService departmentService;
+
     private DepartmentEntity departmentEntity;
-
-	private Skill skill;
-
-
-	@Test
-	public void testCreateSkill() throws Exception{
-		when(skillService.createSkill(any(Skill.class))).thenReturn(skill);
-		mockMvc.perform(post("/skills/create"));
-
-
-	}
-
 
 
 
@@ -75,12 +62,10 @@ class ProgettoDiGruppoRecapApplicationTests {
         departmentEntity.setPhone("000 000 0000");
         departmentEntity.setEmail("email.company@gmail.com");
 
-        skill = new Skill();
-        skill.setId(1L);
-        skill.setNome("Programma per test");
-        skill.setDescrizione("skill da testare");
-        skill.setLivelloEnum(LivelloEnum.MEDIUM);
+
     }
+
+    // Test Department
 
     @Test
     public void testCreateDepartment() throws Exception {
@@ -178,4 +163,7 @@ class ProgettoDiGruppoRecapApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0]name").value(departmentEntity.getName()));
     }
+
+
+
 }

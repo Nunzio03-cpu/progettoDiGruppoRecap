@@ -23,7 +23,7 @@ public class SkillController {
         return ResponseEntity.ok(create);
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("/select-all")
     public List<Skill> getAllSkills(){
         return skillService.getAllSKills();
     }
